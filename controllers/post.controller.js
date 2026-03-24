@@ -128,37 +128,41 @@ exports.likePost = async (req, res) => {
 exports.addComment = async (req, res) => {
     try {
         const { comment } = req.body;
+
         const post = await Post.findById(req.params.postId);
-        
         if (!post) {
-            return res.status(404).json({ 
-                success: false, 
-                message: 'Post not found' 
+            return res.status(404).json({
+                success: false,
+                message: 'Post not found'
             });
         }
 
+        // ✅ get real user from DB
+        const user = await User.findById(req.user.id);
+
         const newComment = {
-            userId: req.newUser._id,
-           user: newUser._id,
-            comment: comment,
+            userId: user._id,
+            userName: `${user.firstName} ${user.lastName}`,
+            comment,
             createdAt: new Date()
         };
 
         post.comments.push(newComment);
         await post.save();
-        
+
         res.json({
             success: true,
             comments: post.comments
         });
+
     } catch (error) {
-        res.status(500).json({ 
-            success: false, 
-            message: error.message 
+        console.error("ADD COMMENT ERROR:", error); // 👈 IMPORTANT
+        res.status(500).json({
+            success: false,
+            message: error.message
         });
     }
 };
-
 // Search Posts
 exports.searchPosts = async (req, res) => {
     try {
