@@ -20,7 +20,7 @@ const {
 // ADMIN POST ROUTES
 router.get('/admin/posts', auth, admin, getAllPosts);
 router.delete('/admin/post/:postId', auth, admin, deletePost);
-router.patch('/admin/post/:postId', auth, admin, updatePost);
+router.patch('/admin/updatepost/:postId', auth, admin, updatePost);
 
 router.patch('/:postId', auth, updatePost);
 router.post('/createPost', auth, createPost);
