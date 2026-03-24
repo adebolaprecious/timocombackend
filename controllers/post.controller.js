@@ -137,8 +137,8 @@ exports.addComment = async (req, res) => {
         }
 
         const newComment = {
-            userId: req.user.id,
-            userName: req.user.name || `${req.user.firstName} ${req.user.lastName}`,
+            userId: req.user._id,
+           userName: `${user.firstName} ${user.lastName}`,
             comment: comment,
             createdAt: new Date()
         };
