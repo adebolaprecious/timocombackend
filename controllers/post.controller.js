@@ -45,6 +45,7 @@ exports.createPost = async (req, res) => {
 exports.getAllPosts = async (req, res) => {
     try {
         const posts = await Post.find({ isPublic: true })
+         .populate("comments.userId", "firstName lastName")
             .sort({ createdAt: -1 })
             .populate('authorId', 'firstName lastName email profilePicture');
         

@@ -10,15 +10,16 @@ const commentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    comment: {
-        type: String,
-        required: true,
-        trim: true
+comments: [
+  {
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
     },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+    comment: String,
+    createdAt: Date
+  }
+]
 });
 
 const postSchema = new mongoose.Schema({
