@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require('cors');
-require('dotenv').config();
+const dotenv = require("dotenv");
 dotenv.config();
 app.set("view engine", 'ejs');
 // Middleware
