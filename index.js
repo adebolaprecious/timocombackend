@@ -9,12 +9,12 @@ app.set("view engine", 'ejs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: "50Mb" }));
 app.use(cors());
-const connectDB = require("./database/connectDB");
 // Routes
 const UserRouter = require('./routers/user.routes');
 const PostRouter = require('./routers/post.routes');
 const ProfileRouter = require('./routers/profile.routes')
 
+const connectDB = require("./database/connectDB");
 app.use('/api/v1/users', UserRouter);
 app.use('/api/v1/posts', PostRouter);
 app.use('/api/v1', ProfileRouter);
@@ -33,13 +33,12 @@ app.use('/api/v1', ProfileRouter);
 //     });
 
 // Server
-const PORT = process.env.PORT || 5009;
-app.listen(PORT, (err) => {
-    if (err) {
-        console.log("❌ Error starting server:", err);
-    } else {
-        console.log(`🚀 Server started successfully on port ${PORT}`);
-    }
+app.listen(process.env.PORT, (err) => {
+  if (err) {
+    console.log("error starting server", err);
+  } else {
+    console.log(`server started successfully`);
+  }
 });
 
 module.exports=async(req, res)=>{
