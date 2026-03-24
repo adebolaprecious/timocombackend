@@ -3,18 +3,21 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require('cors');
 require('dotenv').config();
-
+dotenv.config();
+app.set("view engine", 'ejs');
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: "50Mb" }));
 app.use(cors());
-
+const connectDB = require("./database/connectDB");
 // Routes
 const UserRouter = require('./routers/user.routes');
-const PostRouter = require('./routers/Post.routes');
+const PostRouter = require('./routers/post.routes');
+const ProfileRouter = require('./routers/profile.routes')
 
 app.use('/api/v1/users', UserRouter);
 app.use('/api/v1/posts', PostRouter);
+app.use('/api/v1', ProfileRouter);
 
 // Database connection
 // const DATABASE_URL = process.env.DATABASE_URI || process.env.MONGODB_URL;
