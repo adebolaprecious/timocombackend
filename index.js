@@ -33,6 +33,10 @@ app.use('/api/v1', ProfileRouter);
 //     });
 
 // Server
+app.get('/', (req, res) => {
+  res.send('API is running 🚀');
+});
+
 app.listen(process.env.PORT, (err) => {
   if (err) {
     console.log("error starting server", err);
