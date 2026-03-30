@@ -344,9 +344,9 @@ try{
 
 const post = await Post.findById(req.params.postId)
 
-if(post.authorId.toString() !== req.user.id){
-return res.status(403).json({message:"Not allowed"})
-}
+// if(post.authorId.toString() !== req.user.id){
+// return res.status(403).json({message:"Not allowed"})
+// }
 
 post.postTitle = req.body.postTitle || post.postTitle
 post.postContent = req.body.postContent || post.postContent
