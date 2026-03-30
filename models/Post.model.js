@@ -34,7 +34,7 @@ const postSchema = new mongoose.Schema({
     },
     postCategory: {
         type: String,
-        enum: ['general', 'announcement', 'question', 'discussion', 'update'],
+        enum: ['general', 'Sport','political discussion', 'technology'],
         default: 'general'
     },
     postImage: {
