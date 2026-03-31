@@ -144,12 +144,12 @@ const getMe = async (req, res) => {
 // Edit User
 const editUser = async (req, res) => {
     const { id } = req.params;
-    const { firstName, lastName, email } = req.body;
+    const { firstName, lastName, email, bio} = req.body;
     
     try {
         const user = await User.findByIdAndUpdate(
             id,
-            { firstName, lastName, email },
+            { firstName, lastName, email, bio },
             { new: true, runValidators: true }
         ).select('-password');
         
